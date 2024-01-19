@@ -45,7 +45,7 @@ class MovieController extends Controller
 
         Movie::Create($payload);
 
-        return redirect()->route('admin.movies');
+        return redirect()->route('admin.movie')->with('success', 'Movie created succesfully');;
     }
 
     public function edit($id)
@@ -79,6 +79,13 @@ class MovieController extends Controller
             Storage::delete('public/img/thumbnail/large_thumbnail/' . $movie->large_thumbnail);
         }
         $movie->update($payload);
-        return redirect()->route('admin.movies');
+        return redirect()->route('admin.movie')->with('success', 'Movie updated succesfully');
+    }
+
+    public function destroy($id)
+    {
+        Movie::find($id)->delete(); //Error automaticly handling by Laravel
+
+        return redirect()->route('admin.movie')->with('success', 'Movie deleted succesfully :)');
     }
 }

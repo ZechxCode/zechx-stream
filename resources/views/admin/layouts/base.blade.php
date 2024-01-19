@@ -57,7 +57,15 @@
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-
+            @if (session()->has('success'))
+                <div class="alert alert-success text-center">
+                    {{ session('success') }}
+                </div>
+            @elseif (session()->has('error'))
+                <div class="alert alert-danger text-center">
+                    {{ session('error') }}
+                </div>
+            @endif
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
