@@ -4,5 +4,5 @@
 
 
 @section('content')
-    <h3>Welcome Admin</h3>
+    <h3>Welcome {{ Auth::user()->name }}</h3>
 @endsection
