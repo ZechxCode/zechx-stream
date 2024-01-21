@@ -28,6 +28,8 @@ Route::post('admin/login', [LoginController::class, 'authenticate'])->name('admi
 Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
+    Route::post('/logout', [LoginController::class, 'logout'])->name('admin.login.logout');
+
     Route::prefix('movie')->controller(MovieController::class)->group(function () {
         Route::get('/', 'index')->name('admin.movie');
 

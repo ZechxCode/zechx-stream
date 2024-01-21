@@ -20,6 +20,6 @@ class AdminAuthenticate
         if ($user && $user->role === 'admin') {
             return $next($request);
         }
-        return redirect()->route('admin.login');
+        return redirect()->route('admin.login')->with('error', 'Silahkan login terlebih dahulu');
     }
 }

@@ -50,6 +50,20 @@
                           </p>
                       </a>
                   </li>
+
+                  <li class="nav-item mt-2">
+                      <form id="logoutForm" action="{{ route('admin.login.logout') }}" method="POST">
+                          @method('post')
+                          @csrf
+                          <a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit()"
+                              class="nav-link">
+                              <i class="nav-icon fas fa-sign-out-alt"></i>
+                              <p>
+                                  Logout
+                              </p>
+                          </a>
+                      </form>
+                  </li>
               </ul>
           </nav>
           <!-- /.sidebar-menu -->
