@@ -18,4 +18,15 @@ class Transaction extends Model
         'transaction_code',
         'status',
     ];
+
+    public function package()
+    {
+        return $this->belongsTo(Package::class, 'package_id', 'id'); // foreign key , primarykey
+
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class); //syarat cara pendek harus sama seperti ('model_id','id')
+    }
 }

@@ -1,9 +1,12 @@
 <?php
 
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Member\RegisterController;
+use App\Http\Controllers\Admin\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +18,11 @@ use App\Http\Controllers\Admin\DashboardController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//Define member route here
+Route::view('/', 'index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/register', [RegisterController::class, 'index'])->name('member.register');
+
 
 Route::get('admin/login', [LoginController::class, 'index'])->name('admin.login');
 Route::post('admin/login', [LoginController::class, 'authenticate'])->name('admin.login.auth');
@@ -40,5 +44,9 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
         Route::put('/update/{id}', 'update')->name('admin.movie.update');
 
         Route::delete('/destroy/{id}', 'destroy')->name('admin.movie.destroy');
+    });
+
+    Route::prefix('transaction')->controller(TransactionController::class)->group(function () {
+        Route::get('/', 'index')->name('admin.transaction');
     });
 });
