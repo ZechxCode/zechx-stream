@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
-use App\Http\Requests\MovieRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Admin\MovieRequest;
 
 
 class MovieController extends Controller

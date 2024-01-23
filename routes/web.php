@@ -4,9 +4,11 @@ use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MovieController;
+use App\Http\Controllers\Member\PricingController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Member\RegisterController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Member\LoginController as MemberLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,12 +24,22 @@ use App\Http\Controllers\Admin\TransactionController;
 Route::view('/', 'index');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('member.register');
+Route::post('/register', [RegisterController::class, 'store'])->name('member.register.store');
 
+Route::get('/login', [MemberLoginController::class, 'index'])->name('member.login');
+Route::post('/login', [MemberLoginController::class, 'auth'])->name('member.login.auth');
 
+Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
+
+Route::prefix('member')->middleware('auth')->group(function () {
+    // Route::get('test', function () {
+    //     return 'Kamu Sudah Login';
+    // });
+});
+
+//Admin
 Route::get('admin/login', [LoginController::class, 'index'])->name('admin.login');
 Route::post('admin/login', [LoginController::class, 'authenticate'])->name('admin.login.auth');
-
-
 
 Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
