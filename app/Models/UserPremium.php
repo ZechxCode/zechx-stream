@@ -9,7 +9,7 @@ class UserPremium extends Model
 {
     use HasFactory;
 
-    protected $table = 'user_premiums';
+    protected $table = 'user_premium';
 
     protected $fillable = [
         'package_id',

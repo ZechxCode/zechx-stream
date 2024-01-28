@@ -24,5 +24,16 @@ class RegisterController extends Controller
         User::create($payload);
 
         return redirect()->route('member.login')->with('success', 'silahkan login');
+
+
+
+        // $isEmailExist = User::where('email', $request->email)->exists();
+
+        // if ($isEmailExist) {
+        //     return back()->withErrors([
+        //         'email' => 'Email sudah terdaftar',
+        //     ])->withInput();
+        // }
+
     }
 }
